@@ -1,0 +1,49 @@
+{
+    "name": "compression-stream-polyfill",
+    "version": "1.0.0",
+    "description": "CompressionStream and DecompressionStream polyfill with standards-compliant implementation.",
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "bun run clean && bun run build:js && bun run build:types",
+        "build:js": "bun build index.ts --outdir dist --target=bun --minify --sourcemap=external",
+        "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
+        "clean": "rm -rf dist",
+        "test": "bun test",
+        "test:coverage": "bun test --coverage",
+        "prepublishOnly": "bun run test && bun run build",
+        "typecheck": "tsc --noEmit"
+    },
+    "keywords": ["compression", "decompression", "stream", "polyfill", "bun", "gzip", "deflate", "CompressionStream", "DecompressionStream"],
+    "author": "berzanorg",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/berzanorg/compression-stream-polyfill.git"
+    },
+    "bugs": {
+        "url": "https://github.com/berzanorg/compression-stream-polyfill/issues"
+    },
+    "homepage": "https://github.com/berzanorg/compression-stream-polyfill#readme",
+    "engines": {
+        "bun": ">=1.0.0"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "typescript": "^5.0.0"
+    }
+}
